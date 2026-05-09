@@ -160,14 +160,14 @@ class ClientSM:
 # ==============================================================================
         elif self.state == S_CHATTING:
             if len(my_msg) > 0:     # my stuff going out
-                sentiment = analyze_sentiment(my_msg)
-                my_msg += f" (sentiment: {sentiment})"
-                mysend(self.s, json.dumps(
-                    {"action": "exchange", "from": "[" + self.me + "]", "message": my_msg}))
                 if my_msg == 'bye':
                     self.disconnect()
                     self.state=S_LOGGEDIN
                     self.peer = ''
+                sentiment = analyze_sentiment(my_msg)
+                my_msg += f" (sentiment: {sentiment})"
+                mysend(self.s, json.dumps(
+                    {"action": "exchange", "from": "[" + self.me + "]", "message": my_msg}))
             if len(peer_msg) > 0:    # peer's stuff, coming in
                 # ----------your code here------#
                 peer_msg = json.loads(peer_msg)

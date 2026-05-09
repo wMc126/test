@@ -16,7 +16,7 @@ from chat_utils import *
 import chat_group as grp
 import requests
 from chatbot_client import ChatBotClient
-from sentiment import analyze_sentiment
+from  sentiment import analyze_sentiment
 import bonus_nlp
 
 class Server:
@@ -265,6 +265,7 @@ class Server:
                 mysend(from_sock, json.dumps(
                     {"action": "bot", "results": ai_reply}))
             elif msg["action"] == "set_personality":
+                from_name = self.logged_sock2name[from_sock]
                 prompt=msg['target']
                 self.bots[from_name].set_personality(prompt)
                 mysend(from_sock, json.dumps(

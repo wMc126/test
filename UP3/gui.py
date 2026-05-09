@@ -1,4 +1,3 @@
-# import all the required  modules
 import threading
 import select
 from tkinter import *
